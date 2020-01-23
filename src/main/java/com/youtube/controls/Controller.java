@@ -2,20 +2,15 @@ package com.youtube.controls;
 
 import com.youtube.config.Config;
 import com.youtube.controls.search.Search;
-import com.youtube.ui.layout.BrowserPanel;
-import com.youtube.ui.layout.SearchPanel;
-import com.youtube.ui.layout.VideoList;
+import com.youtube.ui.layout.*;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class Controller implements Config {
     private Search controls = new Search();
-
 
     public void run(Stage window) {
         setupStage(window);
@@ -33,15 +28,18 @@ public class Controller implements Config {
         // configure iu: all things on main screen
         window.setScene(mainScene);
 
-
         // buttons functionality
         searchLayout.getSearch().setOnMouseClicked(e -> controls.search(searchLayout.getSearchText().getText(),
                 searchView.getResultsList()));
 
+        searchLayout.getSearchAdvanced().setOnMouseClicked(e -> controls.search(searchLayout.getSearchText().getText(),
+                searchLayout.getMaxRes().getText(),
+                searchLayout.getDaysPublished().getText(),
+                searchView.getResultsList()));
 
         searchLayout.getLeftButton().setOnMouseClicked(e -> {
             try {
-                controls.showHistory(searchView.getResultsList(),BrowserPanel.getInstance().getHistoryBack());
+                controls.showHistory(searchView.getResultsList(), BrowserPanel.getInstance().getHistoryBack());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -49,16 +47,11 @@ public class Controller implements Config {
 
         searchLayout.getRightButton().setOnMouseClicked(e -> {
             try {
-                controls.showHistory(searchView.getResultsList(),BrowserPanel.getInstance().getHistoryForward());
+                controls.showHistory(searchView.getResultsList(), BrowserPanel.getInstance().getHistoryForward());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
-
-        searchLayout.getSearchAdvanced().setOnMouseClicked(e -> controls.search(searchLayout.getSearchText().getText(),
-                searchLayout.getMaxRes().getText(),
-                searchLayout.getDaysPublished().getText(),
-                searchView.getResultsList()));
 
         // closing okhttp client on program close
         window.setOnCloseRequest(event -> {
