@@ -121,7 +121,7 @@ public class Search implements Config {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful() && isSuccess(response)) {
+                if (response.isSuccessful()) {
                     // response from YouTube
                     assert response.body() != null : "response.body() = null";
                     ApiResponse responseYoutube = mapper.readValue(response.body().bytes(), new TypeReference<ApiResponse>() {
@@ -198,21 +198,5 @@ public class Search implements Config {
             return url;
         }
         return "https://i.ytimg.com/vi/yWpKll3G_a0/default.jpg";
-    }
-
-    private boolean isSuccess(Response response) {
-        int code = response.code();
-        switch (code) {
-            case 200:
-                return true;
-            case 400: {
-                System.out.println("something went wrong");
-                return false;
-            }
-            default: {
-                System.out.println("not best result");
-                return false;
-            }
-        }
     }
 }
