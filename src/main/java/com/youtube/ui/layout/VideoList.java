@@ -20,6 +20,7 @@ public class VideoList {
         resultsBox.setMaxSize(width, height - positionY - 50);
     }
 
+
     public VBox getResultsBox() {
         return resultsBox;
     }

@@ -3,8 +3,8 @@ package com.youtube.config;
 import okhttp3.OkHttpClient;
 
 public interface Config {
-    int HEIGHT = 700;
-    int WIDTH = 850;
+    int HEIGHT = 800;
+    int WIDTH = 1000;
 
     OkHttpClient client = new OkHttpClient();
 
