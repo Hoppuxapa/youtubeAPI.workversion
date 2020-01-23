@@ -9,8 +9,25 @@ import javafx.scene.layout.VBox;
 
 public class SearchPanel {
     private static boolean clickCount = false;
+    private Button leftButton = new Button("Back");
+    private Button rightButton = new Button("Forward");
 
+    //search set
+    private Button search = new Button("Search");
+    private Button advanced = new Button("Advanced");
+    private TextField searchText = new TextField();
+    private HBox searchBox = new HBox(searchText, search, advanced, leftButton, rightButton);
 
+    //advanced components
+    private TextField maxRes = new TextField();
+    private TextField daysPublished = new TextField();
+    private Button searchAdvanced = new Button("Search");
+    private HBox searchBoxExtend = new HBox(maxRes, daysPublished, searchAdvanced);
+    private VBox result;
+
+    public SearchPanel() {
+        initUI();
+    }
 
     public Button getLeftButton() {
         return leftButton;
@@ -20,28 +37,28 @@ public class SearchPanel {
         return rightButton;
     }
 
-    private Button leftButton = new Button("Back");
+    public Button getSearch() {
+        return search;
+    }
 
-    private Button rightButton = new Button("Forward");
+    public TextField getSearchText() {
+        return searchText;
+    }
 
+    public TextField getMaxRes() {
+        return maxRes;
+    }
 
-    //search set
-    private Button search = new Button("Search");
-    private Button advanced = new Button("Advanced");
-    private TextField searchText = new TextField();
-    private HBox searchBox = new HBox(searchText, search, advanced, leftButton, rightButton);
+    public TextField getDaysPublished() {
+        return daysPublished;
+    }
 
+    public Button getSearchAdvanced() {
+        return searchAdvanced;
+    }
 
-    //advanced components
-    private TextField maxRes = new TextField();
-    private TextField daysPublished = new TextField();
-    private Button searchAdvanced = new Button("Search");
-    private HBox searchBoxExtend = new HBox(maxRes, daysPublished, searchAdvanced);
-
-    private VBox result;
-
-    public SearchPanel() {
-        initUI();
+    public VBox searchPanel() {
+        return result;
     }
 
     private void initUI() {
@@ -92,35 +109,9 @@ public class SearchPanel {
             clickCount = !clickCount;
             if (clickCount) {
                 searchBoxExtend.setVisible(true);
-                System.out.println("show advanced fields");
             } else {
                 searchBoxExtend.setVisible(false);
-                System.out.println("hide advanced fields");
             }
         });
-    }
-
-    public Button getSearch() {
-        return search;
-    }
-
-    public TextField getSearchText() {
-        return searchText;
-    }
-
-    public TextField getMaxRes() {
-        return maxRes;
-    }
-
-    public TextField getDaysPublished() {
-        return daysPublished;
-    }
-
-    public Button getSearchAdvanced() {
-        return searchAdvanced;
-    }
-
-    public VBox searchPanel() {
-        return result;
     }
 }
