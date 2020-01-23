@@ -25,7 +25,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import javax.swing.text.WrappedPlainView;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -48,24 +47,19 @@ public class Video extends ListCell<String> implements Config, HttpConfig {
         gridPane = new GridPane();
         ObjectMapper mapper = new ObjectMapper();
 
-        //todo: for channel description we need to do search in CHANNEL and put it here!!!
-
         String desc = null;
         try(Response response = client.newCall(new Request.Builder()
                 .url(HttpUrl.parse("https://www.googleapis.com/youtube/v3")
                         .newBuilder()
                         .addPathSegment("channels")
                         .addQueryParameter("part", "snippet")
-                        //.addQueryParameter("maxResults", maxResults)
                         .addQueryParameter("id", searchResult.getUrlIDChannel())
                         .addQueryParameter("key", KEY)
                         .build())
                 .get()
                 .build()).execute()){
-            //String resp = response.body().string();
             NewApiResponse apiResponse = mapper.readValue(response.body().bytes(), new TypeReference<NewApiResponse>(){});
-            //System.out.println(resp);
-                desc = apiResponse.getItems().get(0).getSnippet().getDescription();
+            desc = apiResponse.getItems().get(0).getSnippet().getDescription();
         }
 
         channelNameActions(searchResult.getChannelName(), desc, searchResult.getUrlIDChannel(), searchResult.getUrlPathToImage());
