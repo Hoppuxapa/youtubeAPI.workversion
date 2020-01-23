@@ -87,9 +87,8 @@ public class Search implements Config {
         }
 
         //reformat date for search request to 1970-01-01T00:00:00Z
-        LocalDate newDate = LocalDate.now().minusDays(Integer.parseInt(daysPublished));
-        LocalDateTime seekingDate = LocalDateTime.of(newDate, LocalTime.MIDNIGHT);
-        String publishedAfter = seekingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        LocalDateTime newDate = LocalDateTime.now().minusDays(Integer.parseInt(daysPublished));
+        String publishedAfter = newDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
 
         http = HttpBuilder.buildHttpUrl(searchText, maxRes, publishedAfter);
         searchEngine(http, resultsList, true);
