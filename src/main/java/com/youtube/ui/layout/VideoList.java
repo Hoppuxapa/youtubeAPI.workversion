@@ -4,8 +4,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-import java.util.LinkedList;
-
 public class VideoList {
     private ListView<GridPane> resultsList = new ListView<>();
     private VBox resultsBox = new VBox(resultsList);
@@ -20,12 +18,9 @@ public class VideoList {
         resultsBox.setMaxSize(width, height - positionY - 50);
     }
 
-
     public VBox getResultsBox() {
         return resultsBox;
     }
-
-
 
     public ListView<GridPane> getResultsList() {
         return resultsList;
