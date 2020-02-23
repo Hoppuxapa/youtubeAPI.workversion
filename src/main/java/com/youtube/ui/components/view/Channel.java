@@ -6,9 +6,7 @@ import com.youtube.response.SimpleResponse;
 import com.youtube.ui.components.ImageLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
@@ -68,12 +66,10 @@ public class Channel extends ListCell<String> implements Config {
     }
 
     private void loadImage(String urlPathToImage) {
-        System.out.println("URL for images - " + urlPathToImage + " | " + this.getClass().getSimpleName());
         new Thread(new ImageLoader(imageView,urlPathToImage)).start();
     }
 
     public GridPane newList() {
-        System.out.println("New grid was created for channel" + this.getClass().getSimpleName());
         gridPane.setHgap(15);
         return gridPane;
     }

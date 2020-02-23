@@ -7,20 +7,17 @@ import java.util.List;
 
 public class BrowserPanel {
     private static BrowserPanel instance;
+    private int count = -1;
+    private List<ApiResponse> history = new LinkedList<>();
 
     private BrowserPanel() {
     }
-
     public static BrowserPanel getInstance() {
         if (instance == null) {
             instance = new BrowserPanel();
         }
         return instance;
     }
-
-    public List<ApiResponse> history = new LinkedList<>();
-
-    private int count = -1;
 
     public void addNext(ApiResponse responseYoutube) {
         history.add(responseYoutube);
@@ -42,5 +39,4 @@ public class BrowserPanel {
             return history.get(--count);
         }
     }
-
 }

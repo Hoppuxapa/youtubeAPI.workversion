@@ -5,8 +5,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    // version 0.0.3
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Controller controller = new Controller();

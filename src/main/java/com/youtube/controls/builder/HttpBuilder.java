@@ -20,9 +20,6 @@ public class HttpBuilder implements HttpConfig {
         return httpUrl;
     }
 
-
-
-
     public static HttpUrl buildHttpUrl(String searchText) {
         HttpUrl httpUrl = HttpUrl.parse(ROOT_URL).newBuilder()
                         .addPathSegment("youtube")
